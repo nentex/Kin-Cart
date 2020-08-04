@@ -4,12 +4,14 @@ import generales.Utilities;
 
 public class MainScreen {
 
-    String iptSearch = "//input[@id='twotabsearchtextbox']",
+    String inputSearch = "//input[@id='twotabsearchtextbox']",
             btnSubmit = "//div[@class='nav-search-submit nav-sprite']",
-            btnSecondPage = "//li[@class='a-normal']//*[contains(text(),'2')]";
+            btnSecondPage = "//li[@class='a-normal']//*[contains(text(),'2')]",
+            elmThird = "(//div[@class='sg-col-inner']//div[@data-index='2']//div[@class='sg-col-inner']//div)[9]";
+
 
     public void typeAlexa(){
-        Utilities.type(iptSearch, "Alexa");
+        Utilities.type(inputSearch, "Alexa");
     }
 
     public void clickSubmit(){
@@ -18,5 +20,9 @@ public class MainScreen {
 
     public void clickSecondPage(){
         Utilities.click(btnSecondPage);
+    }
+
+    public void clickThirdElement(){
+        Utilities.click(elmThird);
     }
 }
