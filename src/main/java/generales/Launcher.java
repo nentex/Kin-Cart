@@ -17,14 +17,6 @@ public class Launcher {
         driver.get("https://www.amazon.com/");
 
     }
-
-    public static WebDriver getDriver(){
-        return driver;
-    }
-
-    public static void main(String[] args) {
-        navigate();
-    }
-
 }
+
 

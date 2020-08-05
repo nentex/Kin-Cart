@@ -5,26 +5,35 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Utilities {
+import java.io.IOException;
+
+public class Utilities extends Launcher{
 
 
     public static void recognizeElement(String xpath, int tiempo) {
-        new WebDriverWait(Launcher.getDriver(), tiempo).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+        new WebDriverWait(driver, tiempo).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 
     }
 
     public static void click(String xpath) {
         recognizeElement(xpath, 30);
-        Launcher.getDriver().findElement(By.xpath(xpath)).click();
+        driver.findElement(By.xpath(xpath)).click();
 
     }
 
     public static void type(String xpath, String text) {
         recognizeElement(xpath, 30);
-        WebElement element = Launcher.getDriver().findElement(By.xpath(xpath));
-        element.sendKeys(text);
+        driver.findElement(By.xpath(xpath)).sendKeys(text);
 
     }
 
+    public static void checkElementisEnabled(String xpath){
+        driver.findElement(By.xpath(xpath)).isEnabled();
+    }
+
+    public static void quitDriver() throws IOException {
+        driver.quit();
+        Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /F");
+    }
 
 }
