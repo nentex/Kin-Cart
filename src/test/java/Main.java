@@ -1,32 +1,45 @@
 import generales.Launcher;
 import generales.Utilities;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import pageObject.Screens;
 
 import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+    private boolean purchasable;
 
+    @BeforeMethod
+    public void navigate(){
         Launcher.navigate();
+    }
 
-        Screens.main.typeAlexa();
-        Screens.main.clickSubmit();
-        Screens.main.clickSecondPage();
-        Thread.sleep(1000);
-        Screens.main.clickThirdElement();
+    @Test
+    public void testCase(){
 
         try{
-            Screens.product.recognizeAddToCart();
-            Screens.product.btntnAddtoCartEnabled();
+            Screens.main.typeAlexa();
+            Screens.main.clickSubmit();
+            Screens.main.clickSecondPage();
+            Screens.main.clickThirdElement();
+
+            purchasable = Screens.product.btntnAddtoCartEnabled();
+
+            Assert.assertTrue(purchasable,"You can not purchase this prodcut");
             System.out.println("\nYou can purchase this product");
 
         }catch (Exception e){
-            System.err.println("\nYou can not purchase this product");
+            System.err.println("ERROR");
 
         }
 
-        Utilities.quitDriver();
+    }
 
+    @AfterMethod
+    public void quitDirver() throws IOException {
+        Utilities.quitDriver();
     }
 }

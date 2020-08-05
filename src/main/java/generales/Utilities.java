@@ -27,9 +27,16 @@ public class Utilities extends Launcher{
 
     }
 
-    public static void checkElementisEnabled(String xpath){
-        driver.findElement(By.xpath(xpath)).isEnabled();
+    public static boolean checkElementisEnabled(String xpath){
+        try {
+            recognizeElement(xpath,10);
+            return driver.findElement(By.xpath(xpath)).isEnabled();
+
+        }catch (Exception e){
+            return false;
+        }
     }
+
 
     public static void quitDriver() throws IOException {
         driver.quit();
