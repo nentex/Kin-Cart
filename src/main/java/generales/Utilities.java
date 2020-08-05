@@ -1,7 +1,6 @@
 package generales;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,6 +8,7 @@ import java.io.IOException;
 
 public class Utilities extends Launcher{
 
+/*Selenium utilities that i used in this test case. Here, i used to add others utilities like screenshots, report or sikuli staff*/
 
     public static void recognizeElement(String xpath, int tiempo) {
         new WebDriverWait(driver, tiempo).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
@@ -36,7 +36,6 @@ public class Utilities extends Launcher{
             return false;
         }
     }
-
 
     public static void quitDriver() throws IOException {
         driver.quit();
